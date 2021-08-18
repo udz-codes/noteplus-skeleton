@@ -1,6 +1,6 @@
 # noteplus
 
-A new Flutter project.
+A single user flutter notes app for GraphQL + Flutter Blog. 🚧🚧🚧 Coming Soon 🚧🚧🚧
 
 ## Getting Started
 
