@@ -1,16 +1,22 @@
-# noteplus
+# NotePlus (Final app after blog)
 
-A single user flutter notes app for GraphQL + Flutter Blog. 🚧🚧🚧 Coming Soon 🚧🚧🚧
+## Blog link: 
 
-## Getting Started
+A **single user** flutter notes app for GraphQL + Flutter Blog.
 
-This project is a starting point for a Flutter application.
+This application does not have much purpose, it is only for explaining the concepts in the blog.
 
-A few resources to get you started if this is your first Flutter project:
+## Setup:
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+### **Download skeleton app**
+- [Clone](https://docs.github.com/en/github/creating-cloning-and-archiving-repositories/cloning-a-repository-from-github/cloning-a-repository) the repo (skeleton branch).
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+### **Get packages**
+
+After cloning the skeleton project, we need to install all required packages.
+- Open a terminal at the root of the project.
+- Run the following command to get all packages from ***pubspec.yaml***
+```
+flutter pub get
+``` 
+#### Now you can run the app.
