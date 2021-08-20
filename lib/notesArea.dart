@@ -1,25 +1,72 @@
 import 'package:flutter/material.dart';
 import 'package:noteplus/constants.dart';
 import 'package:animations/animations.dart';
+import 'package:graphql_flutter/graphql_flutter.dart';
 
 class NotesArea extends StatelessWidget {
 
+  static String getNotes = r"""
+  query GetNotes{
+    Notes {
+      title
+      body
+    }
+  }
+  """; 
+
   @override
   Widget build(BuildContext context) {
-
+    
     return SafeArea(
-      child: Container(
-        padding: EdgeInsets.only(left: 15, right: 15),
-        child: Center(child: Text('Check code to add list'),)
-        // child: ListView.builder(
-        //   itemCount: ,
-        //   itemBuilder: (context, index){
-        //     return NoteTile(
-        //       title: ,
-        //       body: ,
-        //     );
-        //   }
-        // ),
+      child: Query(
+        options: QueryOptions(
+          document: gql(getNotes)
+        ),
+        builder: (QueryResult result, {Refetch? refetch, FetchMore? fetchMore,}){
+
+          if(result.isLoading) {
+            return Center(child: Text('Loading...', style: TextStyle(color: kSecondaryAccentColor),));
+          }
+
+          if(result.hasException) {
+            return Center(child: Text('Exception!!', style: TextStyle(color: Colors.red),));
+          }
+
+          List notes = result.data?["Notes"];
+
+          int len = notes.length;
+          return RefreshIndicator(
+            onRefresh: () async {
+              await refetch?.call();
+            },
+            child: notes.length == 0 ? 
+              ListView(
+                padding: EdgeInsets.only(left: 15, right: 15),
+                physics: BouncingScrollPhysics(),
+                children: [
+                  Container(
+                    padding: EdgeInsets.only(top: 300),
+                    child: Center(
+                      child: Text('No notes yet :(', style: TextStyle(color: kSecondaryAccentColor),)
+                    ),
+                  )
+                ]
+              )
+            : Container(
+              padding: EdgeInsets.only(left: 15, right: 15),
+              child: ListView.builder(
+                physics: BouncingScrollPhysics(),
+                itemCount: len,
+                itemBuilder: (context, index){
+                  return NoteTile(
+                    title: notes[(len-1) - index]["title"],
+                    body: notes[(len-1) - index]["body"],
+                  );
+                }
+              ),
+            ),
+          );
+        }
       ),
     );
   }
