@@ -106,7 +106,7 @@ class _CreateSheetState extends State<CreateSheet> {
                     controller: bodyController,
                     expands: true,
                     maxLines: null,
-                    textInputAction: TextInputAction.done,
+                    textInputAction: TextInputAction.newline,
                     textAlignVertical: TextAlignVertical.top,
                     keyboardType: TextInputType.multiline,
                     cursorColor: kPrimaryColor,

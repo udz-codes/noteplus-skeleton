@@ -42,7 +42,6 @@ class NotesArea extends StatelessWidget {
             child: notes.length == 0 ? 
               ListView(
                 padding: EdgeInsets.only(left: 15, right: 15),
-                physics: BouncingScrollPhysics(),
                 children: [
                   Container(
                     padding: EdgeInsets.only(top: 300),
@@ -55,7 +54,6 @@ class NotesArea extends StatelessWidget {
             : Container(
               padding: EdgeInsets.only(left: 15, right: 15),
               child: ListView.builder(
-                physics: BouncingScrollPhysics(),
                 itemCount: len,
                 itemBuilder: (context, index){
                   return NoteTile(
